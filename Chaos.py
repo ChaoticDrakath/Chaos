@@ -24,6 +24,14 @@ async def on_member_join(member):
     print("In our server" + member.name + " joined just joined")
     await client.send_message(member, newUserMessage)
     print("Sent message to " + member.name)
+    
+  
+@client.event
+async def on_member_join(member):
+    server = member.server
+    fmt = 'Welcome {0.mention} to {1.name}! Please check rules and never try to break any rules.'
+    await client.send_message(server, fmt.format(member, server))
+
 
 @client.command(pass_context=True)  
 @commands.has_permissions(kick_members=True)     
